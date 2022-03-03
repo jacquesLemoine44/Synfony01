@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvel Elève{% endblock %}
+
+{% block body %}
+    <h1>Nouvel Eleve</h1>
+
+    {{ include('eleves/_form.html.twig') }}
+
+    <a href="{{ path('eleves_index') }}">Retour Liste</a>
+{% endblock %}

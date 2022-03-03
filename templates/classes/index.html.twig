@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Classes
+
+
+{% endblock %}
+
+{% block body %}
+	<h1>
+		Classes
+
+	</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				{# <th>
+					Id
+
+				</th> #}
+				<th>
+					Classe
+
+				</th>
+				<th>
+					Professeur
+
+				</th>
+				{% if app.user %}
+					<th>
+						actions
+
+					</th>
+				{% endif %}
+			</tr>
+		</thead>
+		<tbody>
+			{% for class in classes %}
+				<tr>
+					{# <td>
+						{{ class.id }}
+					</td> #}
+					<td>
+						{{ class.NomClasse }}
+					</td>
+
+					<td>
+						{{ class.professeurs.nomProfesseur }}
+					</td>
+
+					{% if app.user %}
+						<td>
+							<a href="{{ path('classes_show', {'id': class.id}) }}">
+								Afficher
+
+							</a>
+							<a href="{{ path('classes_edit', {'id': class.id}) }}">
+								Modifier
+
+							</a>
+						</td>
+					{% endif %}
+
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="3">
+						Pas de Classe
+
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('classes_new') }}">
+		Nouvelle Classe
+
+	</a>
+{% endblock %}

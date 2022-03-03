@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Classes
+{% endblock %}
+
+{% block body %}
+	<h1>Classes</h1>
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ class.id }}</td>
+			</tr>
+			<tr>
+				<th>Classe</th>
+				<td>{{ class.NomClasse }}</td>
+			</tr>
+		</tbody>
+	</table>
+
+
+	{# =================================================== #}
+
+	<pre>
+		{{ dump(class.eleve) }}
+	</pre>
+
+	{# {% if class.eleve %} #}
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Nom de l'élève</th>
+				<th>Prénom</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for elefe in class.eleve %}
+				<tr>
+					<td>{{ elefe.nomEleve }}</td>
+					<td>{{ elefe.prenomEleve }}</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="3">
+						Pas d'élève
+
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	{# {% endif %} #}
+
+	{# =================================================== #}
+
+
+	<a href="{{ path('classes_index') }}">Retour Liste</a>
+
+	<a href="{{ path('classes_edit', {'id': class.id}) }}">Modifier</a>
+
+	{{ include('classes/_delete_form.html.twig') }}
+{% endblock %}

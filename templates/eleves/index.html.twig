@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des élèves{% endblock %}
+
+{% block body %}
+    <h1>Liste des élèves</h1>
+
+        {# <pre>
+            {{ dump(eleves) }}
+        </pre> #}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom de l'élève</th>
+                <th>Prénom</th>
+                <th>Date de Naissance</th>
+                <th>Classe</th>                    
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for elefe in eleves %}
+            <tr>
+                <td>{{ elefe.id }}</td>
+                <td>{{ elefe.nomEleve }}</td>
+                <td>{{ elefe.prenomEleve }}</td> 
+                <td>{{ elefe.dateNaissance ? elefe.dateNaissance|date('Y-m-d') : '' }}</td>
+                <td>{{ elefe.classes.nomClasse }}</td>  
+                <td>
+                    <a href="{{ path('eleves_show', {'id': elefe.id}) }}">Afficher</a>
+                    <a href="{{ path('eleves_edit', {'id': elefe.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Aucun élève</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('eleves_new') }}">Créer un nouvel élève</a>
+{% endblock %}
